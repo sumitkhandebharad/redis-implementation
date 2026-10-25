@@ -1,6 +1,6 @@
 # Redis Cache
 
-A Spring Boot 3 / Java 17 example of cache-aside product reads backed by PostgreSQL, with Redis used only as a disposable performance layer.
+A Spring Boot 3 / Java 21 example of cache-aside product reads backed by PostgreSQL, with Redis used only as a disposable performance layer.
 
 ## Architecture and behavior
 
@@ -93,7 +93,7 @@ Create and update use PostgreSQL transactions. Updates invalidate their cache ke
 
 ## Local setup (macOS)
 
-Requirements: Java 17+, Maven, and Docker Desktop (for the provided local services). Copy `.env.example` to `.env`, set `DB_PASSWORD` to a local development password, and edit other values as needed. `spring-dotenv` loads `.env` before Spring configuration is resolved. Real process environment variables take precedence over `.env`. `application.yml` contains environment-variable references without embedded connection defaults, so missing configuration fails instead of silently connecting with fallback credentials. `.env` is ignored by Git; `.env.example` is a placeholder template, not a credentials file. For deployment, inject credentials through the environment or secret manager.
+Requirements: Java 21+, Maven, and Docker Desktop (for the provided local services). Copy `.env.example` to `.env`, set `DB_PASSWORD` to a local development password, and edit other values as needed. `spring-dotenv` loads `.env` before Spring configuration is resolved. Real process environment variables take precedence over `.env`. `application.yml` contains environment-variable references without embedded connection defaults, so missing configuration fails instead of silently connecting with fallback credentials. `.env` is ignored by Git; `.env.example` is a placeholder template, not a credentials file. For deployment, inject credentials through the environment or secret manager.
 
 Start PostgreSQL and Redis:
 
