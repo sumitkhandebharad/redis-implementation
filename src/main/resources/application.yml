@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: ${APP_NAME}
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:update}
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      timeout: ${REDIS_TIMEOUT}
+server:
+  port: ${SERVER_PORT}
+app:
+  cache:
+    ttl-seconds: ${CACHE_TTL_SECONDS}
+    ttl-jitter-percent: ${CACHE_TTL_JITTER_PERCENT}
+    singleflight-enabled: ${CACHE_SINGLEFLIGHT_ENABLED}
+    negative-ttl-seconds: ${CACHE_NEGATIVE_TTL_SECONDS}
+    stale-retention-seconds: ${CACHE_STALE_RETENTION_SECONDS}
+    background-refresh-enabled: ${CACHE_BACKGROUND_REFRESH_ENABLED}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
