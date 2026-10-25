@@ -11,7 +11,8 @@ public class TtlGenerator {
     private final CacheProperties properties;
     public TtlGenerator(CacheProperties properties) { this.properties = properties; }
     public Duration next() { return next(ThreadLocalRandom.current().nextDouble()); }
-    Duration next(double sample) {
+    /** Deterministic entry point for validating jitter boundaries; sample is clamped to [0, 1). */
+    public Duration next(double sample) {
         long base = properties.ttlSeconds();
         long spread = Math.max(0, Math.round(base * properties.ttlJitterPercent() / 100.0));
         long min = Math.max(1, base - spread), max = Math.max(min, base + spread);

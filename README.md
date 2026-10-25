@@ -227,3 +227,4 @@ The example does not promise distributed stampede protection or strict cache con
 - Check that `.env` contains the required variables from `.env.example` and that process environment values are not overriding them.
 - Maven dependency resolution requires access to Maven Central (or a configured mirror).
 - Product cache keys use the `v2` namespace after adding category and description fields; any existing `v1` entries are ignored and expire under their prior TTL.
+- Run Maven tests with JDK 21, not a newer runtime unsupported by the resolved Mockito/Byte Buddy versions. On macOS, select JDK 21 with `export JAVA_HOME=$(/usr/libexec/java_home -v 21)` and ensure `$JAVA_HOME/bin` is first on `PATH` before running `mvn test`. In IntelliJ, set both Project SDK and Maven Runner JRE to 21; setting only the compiler release does not change the JVM that runs tests.

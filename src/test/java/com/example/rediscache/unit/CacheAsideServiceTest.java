@@ -58,7 +58,8 @@ class CacheAsideServiceTest {
     @Test void redisReadAndWriteFailuresDoNotFailDatabaseRead() {
         when(values.get(keys.product(1))).thenThrow(new org.springframework.data.redis.RedisConnectionFailureException("down"));
         when(repository.findById(1L)).thenReturn(Optional.of(product(1)));
-        when(values.set(anyString(), anyString(), any(Duration.class))).thenThrow(new org.springframework.data.redis.RedisConnectionFailureException("down"));
+        doThrow(new org.springframework.data.redis.RedisConnectionFailureException("down"))
+                .when(values).set(anyString(), anyString(), any(Duration.class));
         assertEquals("product", service.get(1).name());
     }
     @Test void missingProductIsNotCached() {
